@@ -1,0 +1,74 @@
+.page{
+    display: flex;
+    align-items: stretch;
+    height: 100vh;
+}
+.container1{
+    width: 40%;
+    height: 100%;
+    background-color: rgb(51, 123, 255);
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+h3{
+    font-size: 40px;
+    padding: 20%;
+}
+
+main{
+    width: 60%;
+    background: rgb(255, 255, 255);
+    padding: 0 32px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.main-content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    align-items: stretch;
+    text-align: center;
+}
+input{
+    margin-top: 10px;
+    height: 40px;
+    border-radius: 8px;
+    width: 100%;
+    padding: 0 16px;
+    background: #fff;
+    border: 1px solid rgb(216, 216, 216);
+}
+button{
+    margin-top: 26px;
+    width: 100%;
+}
+.google{
+    margin-top: 64px;
+    height: 45px;
+    border-radius: 8px;
+    font-weight: 500;
+    background: #ea4335;
+    color: white;
+    
+    cursor: pointer;
+    border: 0;
+}
+svg{
+    margin: -2px 15px;
+}
+.logar{
+    background: rgb(51, 123, 255);
+    height: 45px;
+    border-radius: 8px;
+    font-weight: 500;
+    color: white;
+    
+    cursor: pointer;
+    border: 0;
+    
+}

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import '../css/home.css'
-import {createUserWithEmailAndPassword} from 'firebase/auth';
+import {createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword} from 'firebase/auth';
 import { auth } from "../firebase";
 import { Link } from 'react-router-dom';
+import Profile from "./Profile";
 
 export default function Home(){
     const [user, setUser] = useState('');
@@ -10,7 +11,13 @@ export default function Home(){
     const [registers, setRegisters] = useState(true);
     const [userLogin, setUserLogin] = useState('');
     const [passLogin, setPassLogin] = useState('');
- 
+    const [login, setLogin] = useState({});
+    const [online, setOnline] = useState(false);
+
+    onAuthStateChanged(auth, (currentUser) =>{
+        setLogin(currentUser);
+    })
+
     const register = async () =>{
         try{
             const use = await createUserWithEmailAndPassword(auth, user, password);
@@ -19,12 +26,14 @@ export default function Home(){
         }
         
     }
-    console.log(user)
+    const loginE = async () =>{
+        try{
+            const use = await signInWithEmailAndPassword(auth, userLogin, passLogin);
 
-    const login = async () =>{
-
+        }catch(e){
+            console.log(e.menssage);
+        }
     }
-
     const btnRegister = () =>{
         if(registers){
             setRegisters(false);
@@ -36,8 +45,9 @@ export default function Home(){
     return(
         <div className="page">
             <div className="container1">
-                <h3>Welcome!</h3>
+                <h3>Welcome! </h3>
             </div>
+            
             <main className="container2">
                 {
                     registers ? (
@@ -47,8 +57,8 @@ export default function Home(){
                                 <input  placeholder="Senha" onChange={(event) =>{setPassLogin(event.target.value)}}/>                        
                             </div>
                             <a onClick={btnRegister} >Cadastre-se</a>
-                            <Link to="/profile" >
-                                <button className="logar" > 
+                            <Link to="/profile">
+                                <button type="button" className="logar" onClick={loginE}> 
                                     Entrar
                                 </button>   
                             </Link>
